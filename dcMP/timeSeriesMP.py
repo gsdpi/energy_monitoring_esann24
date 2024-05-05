@@ -76,8 +76,8 @@ class timeSeriesMP(object):
 		self.scatterFig.ygrid.grid_line_color = None
 		self.scatterFig.background_fill_color = "#FFFFFF"
 		# Lines
-		self.lines = self.scatterFig.multi_line(xs='xs',ys='ys', line_width=3,alpha=0.5,line_color= "#313234",source=self.DataSource)
-		self.linesAll = self.scatterFig.multi_line(xs='xs',ys='ysAll', line_width=3,alpha=0.3,line_color= "#808183",source=self.DataSource)
+		self.lines = self.scatterFig.multi_line(xs='xs',ys='ys', line_width=3,alpha=0.5,line_color= "#000000",source=self.DataSource)
+		self.linesAll = self.scatterFig.multi_line(xs='xs',ys='ysAll', line_width=3,alpha=0.3,line_color= "#313234",source=self.DataSource)
 			
 
 		# Hover tooltips

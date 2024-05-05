@@ -58,11 +58,36 @@ LABELS = {'WHE': "Whole house (WHE)",
         'TVE': "TV (TVE)",
         'UNE': "Unmetered (UNE)"}
 
+RANGES = {'WHE': [0,5000],
+        'RSE': [0,2500],
+        'GRE': [0,500],
+        'MHE': [0,5000],
+        'B1E': [0,150],
+        'BME': [0,380],
+        'CWE': [0,200],
+        'DWE': [0,200],
+        'EQE': [0,45],
+        'FRE': [0,500],
+        'HPE': [0,2000],
+        'OFE': [0,200],
+        'UTE': [0,52],
+        'WOE': [0,2000],
+        'B2E': [0,100],
+        'CDE': [0,1000],
+        'DNE': [0,20],
+        'EBE': [0,50],
+        'FGE': [0,200],
+        'HTE': [0,40],
+        'OUE': [0,3],
+        'TVE': [0,200],
+        'UNE': [0,2000]}
+
+
 # Reading the data and converting the 
 DATAPATH = "./data/Electricity_P.csv"
 data = loadData(DATAPATH)
 data.drop("Time",axis=1,inplace=True)
-data = data.resample('60T').bfill()
+data = data.resample('10T').bfill()
 
 # Reading t-SNE encodings
 z_tsne = pd.read_csv("tsne_enc.csv",index_col=0)
@@ -71,11 +96,10 @@ z_tsne = z_tsne.to_dict(orient='index')
 if DEBUG:
     data[VARS].hist(bins=30,figsize=(16,9))
 # Applying a log transformation in order to enhance the color scale 
-#data[VARS] = np.log(data[VARS].values + np.finfo(np.float32).eps)
+for var,range in RANGES.items():
+    data[var].loc[data[var]>range[1]] = range[1]
 
-# Exploration of data
-if DEBUG:
-    data[VARS].hist(bins=30,figsize=(16,9))
+
 
 data.rename(columns = LABELS,inplace=True)
 data_json = data.to_json(orient='records')

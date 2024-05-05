@@ -123,6 +123,7 @@ class SliderFilter(object):
 											"""											
 												var min_v = this.value[0]
 												var max_v = this.value[1]
+												
 												objects[dtCb_id].filter(gName,[min_v,max_v])
 											""")
 

@@ -161,7 +161,7 @@ class SliderFilter(object):
 												   gName   = self.id),
 									  code = 
 											"""
-												//console.log(cb_obj.attributes.start,cb_obj.attributes.end)
+												console.log(cb_obj.attributes.start,cb_obj.attributes.end)
 												var min_v = cb_obj.attributes.start
 												var max_v = cb_obj.attributes.end
 												objects[dtCb_id].filter(gName,[min_v,max_v])
